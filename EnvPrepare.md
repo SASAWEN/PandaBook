@@ -8,3 +8,6 @@
    1. 使用pip3安装完后需要``source ~/.bash_profile``才能生效
    2. 安装flask
 
+## issue
+
+- 循环导入

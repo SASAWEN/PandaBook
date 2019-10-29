@@ -2,10 +2,11 @@
     Created by cala at 2019-10-25
 """
 
-def is_isbn_or_Key(word):
+def is_isbn_or_key(word):
     # isbn格式：
     # isbn13 13个数字组成
     # isbn10 10个数字组成（含'-'）
+    isbn_or_key = 'key'
     if len(word) == 13 or word.isdigit():
         isbn_or_key = 'isbn'
     short_word = word.replace('-', '')

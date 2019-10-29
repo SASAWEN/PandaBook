@@ -2,7 +2,6 @@
     Created by cala at 2019-10-25
 """
 
-from urllib import request
 import requests
 
 
