@@ -6,7 +6,7 @@
 
 from flask import Blueprint
 
-web = Blueprint('web', __name__)
+web = Blueprint('web', __name__, template_folder='templates')
 
 # 导入视图函数
 from app.web import book

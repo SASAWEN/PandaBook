@@ -2,7 +2,7 @@
     Created by cala at 2019-10-25
 """
 
-from flask import make_response, jsonify, request
+from flask import make_response, jsonify, request, render_template, flash
 from app.libs.handler import is_isbn_or_key
 from app.spider.panda_book import PandaBook
 from . import web
@@ -24,7 +24,7 @@ import json
 # 最佳方式：建立验证层
 # wtforms自动校验
 
-@web.route('/look/search')
+@web.route('/book/search')
 def search():
     """
         q: 查询关键字（普通关键字，isbn编号）
@@ -52,7 +52,7 @@ def search():
         books.fill(panda_book, q)
         return json.dumps(books, default=lambda o:o.__dict__, ensure_ascii=False)
     else:
-        return jsonify({form.errors})
+        flash('Searching format error.')
 
 # 视图函数 view func
 # 与一般函数区别在于：
@@ -77,3 +77,17 @@ def hello_panda(name_):
     response.headers = headers
     return response
 
+@web.route('/test')
+def test():
+    r = {
+        'name': 'panpan',
+        'food': 'pizza'
+    }
+    r1 = {
+        'food': 'apple'
+    }
+
+    flash('hello world')
+    flash('hhh')
+    return render_template('test.html', data=r, data1=r1)
+    pass
