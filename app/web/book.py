@@ -50,9 +50,15 @@ def search():
 
         # __dict__
         books.fill(panda_book, q)
-        return json.dumps(books, default=lambda o:o.__dict__, ensure_ascii=False)
+        # return json.dumps(books, default=lambda o:o.__dict__, ensure_ascii=False)
     else:
         flash('Searching format error.')
+    return render_template('search_result.html', books = books)
+
+@web.route('/book/<isbn>/detail')
+def book_detail(isbn):
+    pass
+
 
 # 视图函数 view func
 # 与一般函数区别在于：
@@ -77,17 +83,3 @@ def hello_panda(name_):
     response.headers = headers
     return response
 
-@web.route('/test')
-def test():
-    r = {
-        'name': 'panpan',
-        'food': 'pizza'
-    }
-    r1 = {
-        'food': 'apple'
-    }
-
-    flash('hello world')
-    flash('hhh')
-    return render_template('test.html', data=r, data1=r1)
-    pass

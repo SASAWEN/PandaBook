@@ -2,7 +2,7 @@
 
 git pull
 git add --all
-if [$# > 0];
+if [$# -gt 0];
 then
     git commit -m $1
 else
