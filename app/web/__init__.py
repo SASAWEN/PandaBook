@@ -9,5 +9,5 @@ from flask import Blueprint
 web = Blueprint('web', __name__)
 
 # 导入视图函数
-from app.web import look
+from app.web import book
 from app.web import user

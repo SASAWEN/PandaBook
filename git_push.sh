@@ -1,4 +1,4 @@
 git pull
 git add --all
-git commit -m ""
+git commit -m "wsswsswss"
 git push

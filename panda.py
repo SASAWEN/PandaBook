@@ -2,7 +2,6 @@
     Created by cala at 2019-10-24
 """
 
-
 from app import create_app
 
 app = create_app()
