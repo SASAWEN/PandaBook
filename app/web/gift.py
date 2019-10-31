@@ -9,11 +9,11 @@ from flask_login import login_required, current_user
 from app.web import web
 
 
-#装饰器login_required是login插件提供的权限管理插件，当没有读取到票据，也就没有权限访问视图函数
+# 装饰器login_required是login插件提供的权限管理插件，当没有读取到票据，也就没有权限访问视图函数
 @web.route('/my/gifts')
 @login_required
 def my_gifts():
-    pass
+    return 'my gifts'
     # uid = current_user.id
     # gifts_of_mine = Gift.get_user_gifts(uid)
     # # 根据查询的礼物列表将每个礼物的isbn查询出来组成列表
