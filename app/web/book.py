@@ -7,7 +7,7 @@ from app.libs.handler import is_isbn_or_key
 from app.spider.panda_book import PandaBook
 from . import web
 from app.forms.book import SearchForm
-from app.view_models.book import BookCollection
+from app.view_models.book import BookCollection, BookViewModel
 import json
 # request由http请求触发
 
@@ -53,12 +53,15 @@ def search():
         # return json.dumps(books, default=lambda o:o.__dict__, ensure_ascii=False)
     else:
         flash('Searching format error.')
-    return render_template('search_result.html', books = books)
+    return render_template('search_result.html', books=books)
 
 @web.route('/book/<isbn>/detail')
 def book_detail(isbn):
-    pass
-
+    # search result -> click book -> book detail
+    panda_book = PandaBook()
+    panda_book.search_by_isbn(isbn)
+    book = BookViewModel(panda_book.first)
+    return render_template('book_detail.html', book=book, wishes=[], gifts=[])
 
 # 视图函数 view func
 # 与一般函数区别在于：
