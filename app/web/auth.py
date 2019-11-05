@@ -29,22 +29,14 @@ def login():
         print(user.password)
         if user and user.check_password(form.password.data):
             login_user(user, remember=True)
-            pass
+            next = request.args.get('next')
+            print(next)
+            if not next or not next.startswith('/'):
+                next = url_for('web.index')
+            return redirect(next)
         else:
             flash('账号不存在或密码错误')
     return render_template('auth/login.html', form=form)
-    # form = LoginForm(request.form)
-    # if request.method == 'POST' and form.validate():
-    #     user = User.query.filter_by(email=form.email.data).first()
-    #     if user and user.check_password(form.password.data):
-    #         login_user(user)
-    #         next = request.args.get('next')
-    #         if not next or not next.startswith('/'):
-    #             next = url_for('web.index')
-    #         return redirect(next)
-    #     else:
-    #         flash('账号不存在或者密码输入错误！')
-    # return render_template('auth/login.html', form=form)
 
 
 @web.route('/reset/password', methods=['GET', 'POST'])

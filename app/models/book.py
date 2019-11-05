@@ -23,7 +23,7 @@ class Book(Base):
     publisher = Column(String(50))
     image = Column(String(50))
     summary = Column(String(1000))
-    update = Column(String(20))
+    pubdate = Column(String(20))
     price = Column(String(20))
     binding = Column(String(20))
     pages = Column(Integer)

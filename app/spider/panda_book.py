@@ -31,6 +31,7 @@ class PandaBook:
         # self.param 查找：实例变量 -> 类变量
         url = self.isbn_url.format(isbn)
         result = HTTP.get(url)
+        print(result)
         self.__fill_single(result)
         # TODO: save to database
         return result

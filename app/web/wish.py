@@ -3,9 +3,9 @@ from flask_login import login_required, current_user
 # from werkzeug.contrib import limiter
 
 # from app.libs.email import send_mail
-# from app.models.base import db
-# from app.models.gift import Gift
-# from app.models.wish import Wish
+from app.models.base import db
+from app.models.gift import Gift
+from app.models.wish import Wish
 # from app.view_models.trade import MyTrades
 from app.web import web
 

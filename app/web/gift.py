@@ -2,9 +2,9 @@ from flask import current_app, flash, redirect, url_for, render_template
 from flask_login import login_required, current_user
 
 # from app.libs.enums import PendingStatus
-# from app.models.base import db
+from app.models.base import db
 # from app.models.drift import Drift
-# from app.models.gift import Gift
+from app.models.gift import Gift
 # from app.view_models.trade import MyTrades
 from app.web import web
 
@@ -26,17 +26,19 @@ def my_gifts():
 @web.route('/gifts/book/<isbn>')
 @login_required
 def save_to_gifts(isbn):
-    pass
-    # if current_user.can_save_to_list(isbn):
-    #     with db.auto_commit():
-    #         gift = Gift()
-    #         gift.isbn = isbn
-    #         gift.uid = current_user.id
-    #         current_user.beans += current_app.config['BEANS_UPLOAD_ONE_BOOK']
-    #         db.session.add(gift)
-    # else:
-    #     flash('这本书已经存在于你的心愿清单或赠送清单，请勿重复添加！')
-    # return redirect(url_for('web.book_detail', isbn = isbn))
+    if current_user.can_save_to_list(isbn):
+        # commit 执行才被写入数据库
+        # rollback 事务回滚 防止因事务操作发生错误 sqlalchemy无法进行下一次数据库操作
+        with db.auto_commit():
+            gift = Gift()
+            gift.isbn = isbn
+            gift.uid = current_user.id
+            current_user.beans += current_app.config['BEANS_UPLOAD_ONE_BOOK']
+            db.session.add(gift)
+    else:
+        flash('请勿将同一本书加入心愿清单和赠送清单！')
+
+    return redirect(url_for('web.book_detail'), isbn=isbn)
 
 @web.route('/gifts/<gid>/redraw')
 @login_required
