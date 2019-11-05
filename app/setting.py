@@ -7,3 +7,4 @@ PER_PAGE = 15
 # 解决返回jsonify中文编码问题
 JSON_AS_ASCII = False
 BEANS_UPLOAD_ONE_BOOK = 0.5
+RECENT_BOOK_COUNT = 30

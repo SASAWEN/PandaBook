@@ -35,10 +35,13 @@ def save_to_gifts(isbn):
             gift.uid = current_user.id
             current_user.beans += current_app.config['BEANS_UPLOAD_ONE_BOOK']
             db.session.add(gift)
+        print(gift)
+        return redirect(url_for('web.book_detail'), book=gift)
     else:
         flash('请勿将同一本书加入心愿清单和赠送清单！')
 
-    return redirect(url_for('web.book_detail'), isbn=isbn)
+    # return redirect(url_for('web.book_detail'), isbn=isbn)
+
 
 @web.route('/gifts/<gid>/redraw')
 @login_required

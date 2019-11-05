@@ -77,7 +77,12 @@ flask访问静态文件
 
 ## 自定义校验
 
-## redirect 重定向
+## redirect 重定向 & render_template 模版渲染
+
+区别：
+
+- 重定向把url换成重定向url
+- 模版渲染不改变url，只使用模版来渲染请求的url
 
 ## cookie
 
@@ -119,13 +124,13 @@ next
 
 ## MVC模型
 
-- **Model**：**业务逻辑** <==> 数据层（orm封装api）
+- **Model**：**有业务意义的业务逻辑** <==> 数据层（orm封装api）
 
   可进一步分层：
 
   - Service
   - Logic
-  - Model
+  - Model   
 
 - **View**：html页面
 
