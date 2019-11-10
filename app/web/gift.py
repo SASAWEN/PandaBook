@@ -5,7 +5,7 @@ from flask_login import login_required, current_user
 from app.models.base import db
 # from app.models.drift import Drift
 from app.models.gift import Gift
-from app.view_models.gifts import Gifts
+from app.view_models.trade import MyTrades
 # from app.view_models.trade import MyTrades
 from app.web import web
 
@@ -18,15 +18,8 @@ def my_gifts():
     gifts_list = Gift.get_user_gifts(uid)
     gifts_isbn = [gift.isbn for gift in gifts_list]
     gifts_wishes_count = Gift.get_wishes_count(gifts_isbn)
-    my_gifts_view_model = Gifts(gifts_list, gifts_wishes_count)
-    return render_template('my_gifts.html', gifts=my_gifts_view_model.gifts)
-    # uid = current_user.id
-    # gifts_of_mine = Gift.get_user_gifts(uid)
-    # # 根据查询的礼物列表将每个礼物的isbn查询出来组成列表
-    # gifts_isbn_list = [gift.isbn for gift in gifts_of_mine]
-    # wish_count_list = Gift.get_wish_counts(gifts_isbn_list)
-    # my_gifts_view_model = MyTrades(gifts_of_mine, wish_count_list)
-    # return render_template('my_gifts.html', gifts=my_gifts_view_model.trades)
+    my_gifts_view_model = MyTrades(gifts_list, gifts_wishes_count)
+    return render_template('my_gifts.html', gifts=my_gifts_view_model.trades)
 
 
 @web.route('/gifts/book/<isbn>')

@@ -4,6 +4,8 @@
 
 from flask import Flask
 from flask_login import LoginManager
+# from flask_mail import Mail
+
 from app.models.base import db
 
 login_manager = LoginManager()
@@ -20,8 +22,11 @@ def create_app():
     login_manager.login_message = '请先登录或注册'
 
     db.create_all(app=app)
-    print(app.config['SQLALCHEMY_DATABASE_URI'])
-    print('---',db)
+    # print('db init finish')
+    #
+    # mail = Mail()
+    # mail.init_app(mail)
+    # print('mail init finish')
     return app
 
 def register_blueprint(app):
