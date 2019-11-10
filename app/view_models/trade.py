@@ -9,23 +9,28 @@ class TradeInfo():
     This model is to show the list of users who want the book and who send the book.
     :param goods: book(wish, gift) list
     """
-    def __init__(self, goods):
+    def __init__(self, trade_list):
         self.total = 0
         self.trades = []
+        self.__parse(trade_list)
 
-    def __parse(self, goods):
-        self.total = len(goods)
+    def __parse(self, trade_list):
+        self.total = len(trade_list)
 
-    def __map_to_trade(self, single_good):
-        if single_good.create_datetime:
+        for single_trade in trade_list:
+            self.trades.append(self.__map_to_trade(single_trade))
+
+
+    def __map_to_trade(self, single_trade):
+        if single_trade.create_datetime:
             # strftime: 格式化操作 转化成string类型
-            time = single_good.create_datetime.strftime('%Y-%m-%d')
+            time = single_trade.create_datetime.strftime('%Y-%m-%d')
         else:
             time = '未知'
         return dict(
-            user_name = single_good.user.nickname,
+            user_name = single_trade.user.nickname,
             time = time,
-            id = single_good.id
+            id = single_trade.id
         )
 
 
