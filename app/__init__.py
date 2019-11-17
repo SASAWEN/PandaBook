@@ -4,11 +4,13 @@
 
 from flask import Flask
 from flask_login import LoginManager
-# from flask_mail import Mail
+from flask_mail import Mail
 
 from app.models.base import db
 
 login_manager = LoginManager()
+
+mail = Mail()
 
 def create_app():
     app = Flask(__name__)
@@ -24,9 +26,8 @@ def create_app():
     db.create_all(app=app)
     # print('db init finish')
     #
-    # mail = Mail()
-    # mail.init_app(mail)
-    # print('mail init finish')
+    mail.init_app(app)
+    print('mail init finish')
     return app
 
 def register_blueprint(app):

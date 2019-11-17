@@ -60,6 +60,9 @@ class Gift(Base):
 
         return wishes_count_list
 
+    def is_yourself_gift(self, uid):
+        return self.uid == uid
+
     @property
     def book(self):
         panda_book = PandaBook()

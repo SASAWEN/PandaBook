@@ -3,7 +3,7 @@
 """
 
 from wtforms import Form, StringField, ValidationError
-from wtforms.validators import Length, DataRequired, Email
+from wtforms.validators import Length, DataRequired, Email, EqualTo
 
 from app.models.user import User
 
@@ -23,4 +23,15 @@ class RegisterForm(LoginForm):
         if User.query.filter_by(email=field.data).first():
             raise ValidationError('邮箱已被注册')
 
+class EmailForm(Form):
+    email = StringField(validators=[
+        DataRequired(), Length(8, 64), Email(message='邮箱格式不符合规范')])
 
+class ResetPasswordForm(Form):
+    password1 = StringField(validators=[
+        DataRequired(message='密码不能为空'),
+        Length(6, 32),
+        EqualTo('password2', message='两次输入密码不相同')])
+
+    password2 = StringField(validators=[
+        DataRequired(message='密码不能为空'), Length(6, 32)])

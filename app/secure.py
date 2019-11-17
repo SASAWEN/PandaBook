@@ -13,10 +13,11 @@ SQLALCHEMY_TRACK_MODIFICATIONS = 'True'
 SECRET_KEY = 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa'
 
 # email配置
-MAIL_SERVER = 'smtp.qq.com'
+MAIL_SERVER = 'smtp.163.com'
 MAIL_PORT = 465
 MAIL_USE_SSL = True
 MAIL_USE_TSL = False
-MAIL_USERNAME = '1152057576@qq.com'
+MAIL_USERNAME = 'wan_sasa@163.com'
 # QQ邮箱->设置->账户->[POP3...]->生成授权码->发送短信->获取授权码
-MAIL_PASSWORD = 'pstomjiomwyybadh'
+MAIL_PASSWORD = 'wenshasha666'
+MAIL_SUBJECT_PREFIX = '[PandaBook]'
